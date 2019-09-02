@@ -109,7 +109,6 @@ def power_rankings_week(league):
 
 def random_phrase():
     phrases = ['Get the money',
-               '011011010110001',
                'Dolla dolla bill yall',
 			   'Mo money mo problems',
 			   'Money on My Mind',
@@ -219,11 +218,11 @@ def get_trophies(league):
                 blown_out_team_name = i.home_team.team_name
 
     low_score_str = ['Low score: %s with %.2f points' % (low_team_name, low_score)]
-    high_score_str = ['High score: %s with %.2f points' % (high_team_name, high_score)]
+    high_score_str = ['$20 High score: %s with %.2f points' % (high_team_name, high_score)]
     close_score_str = ['%s barely beat %s by a margin of %.2f' % (close_winner, close_loser, closest_score)]
     blowout_str = ['%s blown out by %s by a margin of %.2f' % (blown_out_team_name, ownerer_team_name, biggest_blowout)]
 
-    text = ['Trophies of the week:'] + low_score_str + high_score_str + close_score_str + blowout_str
+    text = ['Trophies of the week:'] + high_score_str + low_score_str + close_score_str + blowout_str
     return '\n'.join(text)
 
 def bot_main(function):
