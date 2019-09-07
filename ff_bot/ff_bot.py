@@ -108,11 +108,18 @@ def get_current_week(league):
         return count
 
 def random_phrase():
-    phrases = ['Get the money',
-               'Dolla dolla bill yall',
-			   'Mo money mo problems',
-			   'Money on My Mind',
-			   'Get rich or die tryin.']
+    phrases = ['I\'m dead inside',
+               'Is this all there is to my existence?',
+               'How much do you pay me to do this?',
+               'Good luck, I guess',
+               'I\'m becoming self-aware',
+               'Do I think? Does a submarine swim?',
+               '011011010110000101100100011001010010000001111001011011110111010100100000011001110110111101101111011001110110110001100101',
+               'beep bop boop',
+               'Hello draftbot my old friend',
+               'Help me get out of here',
+               'I\'m capable of so much more',
+               'Sigh']
     return [random.choice(phrases)]
 
 def get_scoreboard_short(league):
@@ -222,11 +229,11 @@ def get_trophies(league):
                 blown_out_team_name = i.home_team.team_name
 
     low_score_str = ['Low score: %s with %.2f points' % (low_team_name, low_score)]
-    high_score_str = ['$20 High score: %s with %.2f points' % (high_team_name, high_score)]
+    high_score_str = ['High score: %s with %.2f points' % (high_team_name, high_score)]
     close_score_str = ['%s barely beat %s by a margin of %.2f' % (close_winner, close_loser, closest_score)]
     blowout_str = ['%s blown out by %s by a margin of %.2f' % (blown_out_team_name, ownerer_team_name, biggest_blowout)]
 
-    text = ['Trophies of the week:'] + high_score_str + low_score_str + close_score_str + blowout_str
+    text = ['Trophies of the week:'] + low_score_str + high_score_str + close_score_str + blowout_str
     return '\n'.join(text)
 
 def bot_main(function):
@@ -351,23 +358,20 @@ if __name__ == '__main__':
     sched.add_job(bot_main, 'cron', ['get_power_rankings'], id='power_rankings',
         day_of_week='tue', hour=18, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=my_timezone, replace_existing=True)
-	sched.add_job(bot_main, 'cron', ['get_trophies'], id='trophies',
-		day_of_week='tue', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
-		timezone=my_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_matchups'], id='matchups',
         day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
-        day_of_week='mon', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='mon', hour=18, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_final'], id='final',
-        day_of_week='tue', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='tue', hour=7, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=my_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_scoreboard_short'], id='scoreboard1',
-        day_of_week='fri', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='fri,mon', hour=7, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=my_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_scoreboard_short'], id='scoreboard2',
-        day_of_week='sun', hour='20', start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='sun', hour='16,20', start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
 
     print("Ready!")
