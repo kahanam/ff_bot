@@ -155,7 +155,7 @@ def get_close_scores(league, week=None):
     return '\n'.join(text)
 
 def get_high_scores(league, week=None):
-    #Gets high scores
+    # Gets high scores
     matchups = league.box_scores(week=week)
     score = []
     scoreDict = {}
@@ -165,7 +165,7 @@ def get_high_scores(league, week=None):
             scoreDict[i.away_team.team_name] = i.away_score
             sorted(scoreDict.values())
         for x, y in scoreDict.items():
-            score += (x, y)
+            score += (str(x), str(y))
     text = ['$20 High Score Watch:'] + score
     return '\n'.join(text)
 
