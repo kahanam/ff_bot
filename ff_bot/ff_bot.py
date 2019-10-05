@@ -158,6 +158,8 @@ def get_high_scores(league, week=None):
     # Gets high scores
     matchups = league.box_scores(week=week)
     high_score = -1
+    high_score2 = -1
+    high_score3 = -1
     for i in matchups:
         if i.home_score > high_score:
             high_score = i.home_score
@@ -165,7 +167,15 @@ def get_high_scores(league, week=None):
         if i.away_score > high_score:
             high_score = i.away_score
             high_team_name = i.away_team.team_name
-    high_score_str = ['$20 High score watch: %s with %.2f points' % (high_team_name, high_score)]
+    high_score_str = ['$20 High score watch\n %s : %.2f points' % (high_team_name, high_score)]
+    for i in matchups:
+        if i.home_score > high_score2 and i.home_score != high_score:
+            high_score2 = i.home_score
+            high_team_name = i.home_team.team_name
+        if i.away_score > high_score2 and i.away_score != high_score:
+            high_score2 = i.away_score
+            high_team_name = i.away_team.team_name
+    high_score_str = high_score_str + ['\n %s : %.2f points' % (high_team_name, high_score2)]
     return '\n'.join(high_score_str)
 
 def get_power_rankings(league, week=None):
