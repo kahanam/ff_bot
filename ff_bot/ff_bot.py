@@ -372,7 +372,7 @@ if __name__ == '__main__':
         day_of_week='sat', hour='9,10,11', minute='10,20,30,40,50,01,05,15,25,35', start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_final'], id='final',
-        day_of_week='sat', hour=10, minute=8, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='sat', hour=10, minute="10,15,20", start_date=ff_start_date, end_date=ff_end_date,
         timezone=my_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_scoreboard_short'], id='scoreboard1',
         day_of_week='fri', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
