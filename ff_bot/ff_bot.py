@@ -315,6 +315,7 @@ def bot_main(function):
         week = league.current_week - 1
         text = "Final " + get_scoreboard_short(league, week=week)
         text = text + "\n\n" + get_trophies(league, week=week)
+        text = text + "\n\n" + get_power_rankings(league)
     elif function=="init":
         try:
             text = os.environ["INIT_MSG"]
@@ -361,17 +362,17 @@ if __name__ == '__main__':
     #score update:                       friday, monday, and tuesday morning at 7:30am local time.
     #score update:                       sunday at 4pm, 8pm east coast time.
 
-    sched.add_job(bot_main, 'cron', ['get_power_rankings'], id='power_rankings',
-        day_of_week='tue', hour=18, minute=30, start_date=ff_start_date, end_date=ff_end_date,
-        timezone=my_timezone, replace_existing=True)
+    #sched.add_job(bot_main, 'cron', ['get_power_rankings'], id='power_rankings',
+        #day_of_week='tue', hour=18, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        #timezone=my_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_matchups'], id='matchups',
         day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
-        day_of_week='sat', hour='9,20', minute='30,40', start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='sat', hour='9,10,11', minute='10,20,30,40,50,01,05,15,25,35', start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_final'], id='final',
-        day_of_week='tue', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='tue', hour=9, minute=55, start_date=ff_start_date, end_date=ff_end_date,
         timezone=my_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_scoreboard_short'], id='scoreboard1',
         day_of_week='fri', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
