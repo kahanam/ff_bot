@@ -154,6 +154,21 @@ def get_close_scores(league, week=None):
     text = ['Close Scores'] + score
     return '\n'.join(text)
 
+def get_high_scores(league, week=None):
+    #Gets high scores
+    matchups = league.box_scores(week=week)
+    score = []
+    scoreDict = {}
+    for i in matchups:
+        if i.away_team:
+            scoreDict[i.home_team.team_name] = i.home_score
+            scoreDict[i.away_team.team_name] = i.away_score
+            sorted(scoreDict.values())
+        for x, y in scoreDict.items():
+            score += (x, y)
+    text = ['$20 High Score Watch:'] + score
+    return '\n'.join(text)
+
 def get_power_rankings(league, week=None):
     # power rankings requires an integer value, so this grabs the current week for that
     if not week:
@@ -290,6 +305,7 @@ def bot_main(function):
         text = get_projected_scoreboard(league)
     elif function=="get_close_scores":
         text = get_close_scores(league)
+        text = text + "\n\n" + get_high_scores(league)
     elif function=="get_power_rankings":
         text = get_power_rankings(league)
     elif function=="get_trophies":
@@ -352,7 +368,7 @@ if __name__ == '__main__':
         day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
-        day_of_week='mon', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='sat', hour='9,20', minute='30,40', start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_final'], id='final',
         day_of_week='tue', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
