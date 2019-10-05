@@ -382,18 +382,18 @@ if __name__ == '__main__':
     #sched.add_job(bot_main, 'cron', ['get_power_rankings'], id='power_rankings',
         #day_of_week='tue', hour=18, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         #timezone=my_timezone, replace_existing=True)
-    sched.add_job(bot_main, 'cron', ['get_matchups'], id='matchups',
-        day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
-        timezone=game_timezone, replace_existing=True)
+    #sched.add_job(bot_main, 'cron', ['get_matchups'], id='matchups',
+        #day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        #timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
-        day_of_week='sat', hour='9,10,11', minute='10,20,30,40,50,01,05,15,25,35,55,57,59', start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='mon', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_final'], id='final',
         day_of_week='tue', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=my_timezone, replace_existing=True)
-    sched.add_job(bot_main, 'cron', ['get_scoreboard_short'], id='scoreboard1',
-        day_of_week='fri', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
-        timezone=my_timezone, replace_existing=True)
+    #sched.add_job(bot_main, 'cron', ['get_scoreboard_short'], id='scoreboard1',
+        #day_of_week='fri', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        #timezone=my_timezone, replace_existing=True)
 
     print("Ready!")
     sched.start()
