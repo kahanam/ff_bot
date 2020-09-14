@@ -173,7 +173,7 @@ def get_high_scores(league, week=None):
         if i.away_score > high_score:
             high_score = i.away_score
             high_team_name = i.away_team.team_name
-    high_score_str = ['$20 High score watch\n %s : %.2f points' % (high_team_name, high_score)]
+    high_score_str = ['$30 High score watch\n %s : %.2f points' % (high_team_name, high_score)]
     for i in matchups:
         if i.home_score > high_score2 and i.home_score != high_score:
             high_score2 = i.home_score
@@ -252,7 +252,7 @@ def get_trophies(league, week=None):
                 blown_out_team_name = i.home_team.team_name
 
     low_score_str = ['Low score: %s with %.2f points' % (low_team_name, low_score)]
-    high_score_str = ['$20 High score: %s with %.2f points' % (high_team_name, high_score)]
+    high_score_str = ['$30 High score: %s with %.2f points' % (high_team_name, high_score)]
     close_score_str = ['%s barely beat %s by a margin of %.2f' % (close_winner, close_loser, closest_score)]
     blowout_str = ['%s blown out by %s by a margin of %.2f' % (blown_out_team_name, ownerer_team_name, biggest_blowout)]
 
@@ -406,7 +406,7 @@ if __name__ == '__main__':
         #day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         #timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
-        day_of_week='sun', hour=20, minute=15, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='sun', hour=20, minute=45, start_date=ff_start_date, end_date=ff_end_date,
         timezone=game_timezone, replace_existing=True)
     sched.add_job(bot_main, 'cron', ['get_final'], id='final',
         day_of_week='tue', hour=8, minute=30, start_date=ff_start_date, end_date=ff_end_date,
